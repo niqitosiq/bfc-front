@@ -41,5 +41,8 @@ h1,h2
 	min-width: 260px
 	+below(1000px)
 		width: 90%
+	+below(720px)
+		flex-direction: column
+		align-items: flex-start
 
 </style>

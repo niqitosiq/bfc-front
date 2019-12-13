@@ -57,7 +57,8 @@ header
 	background: #fff
 	z-index: 4
 	position: relative
-	
+	.container
+		flex-direction: row
 .logo
 	display: flex
 	color: $accent
@@ -137,7 +138,9 @@ header
 				transform: rotate(-45deg) translateY(0%)
 .mobile-menu
 	display: none
+	background: #fff
 	position: absolute
+	top: 0
 	width: 100%
 	padding-left: 0px
 	padding-top: 20px
