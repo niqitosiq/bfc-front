@@ -5,4 +5,4 @@
 export default {
   name: "register"
 };
-</script>
+</script> 

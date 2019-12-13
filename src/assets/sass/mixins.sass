@@ -1,0 +1,10 @@
+
+@import 'node_modules/rupture-sass/rupture';
+
+=flex($vertical: null, $horizontal: null, $direction: row)
+  display: flex
+  flex-direction: $direction
+  @if $vertical != null
+    align-items: $vertical
+  @if $horizontal != null
+    justify-content: $horizontal
