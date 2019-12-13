@@ -1,9 +1,11 @@
 <template lang="pug">
 #app
+	Header
 	router-view
 </template>
 <script>
 import svgi from "@/components/SvgIcon.vue";
+import Header from "@/components/fullHeader.vue"
 import Vue from 'vue';
 Vue.component("svgi", svgi);
 	
@@ -11,6 +13,9 @@ export default {
   name: "App",
   created(){
 
+  },
+  components: {
+  	Header,
   }
 };
 

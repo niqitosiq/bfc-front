@@ -6,8 +6,10 @@ header
 			svgi(name="logo")
 		.menu
 			ul.nav
-				li Главная
-				li Все проекты
+				router-link(to="/")
+					li Главная
+				router-link(to="/projects")
+					li Все проекты
 			div.button 
 				span Войти
 				svgi(name="login")
@@ -15,6 +17,16 @@ header
 				.line.l1
 				.line.l2
 				.line.l3
+	transition(name="fade_top")
+		ul.mobile-menu.nav(v-if="burger")
+			router-link(to="/")
+				li Главная
+			router-link(to="/projects")
+				li Все проекты
+			li.button 
+				span Войти
+				svgi(name="login")
+
 </template>
 
 
@@ -27,7 +39,7 @@ export default {
   },
   data: function () {
 	return {
-		burger: true,
+		burger: false,
     }
   }
 };
@@ -40,6 +52,11 @@ header
 	display: flex
 	justify-content: space-between
 	padding-top: 20px
+	padding-bottom: 20px
+	border-bottom: solid 1px #ccc
+	background: #fff
+	z-index: 4
+	position: relative
 	
 .logo
 	display: flex
@@ -74,6 +91,8 @@ header
 	transition: background ease-in-out .2s
 	cursor: pointer
 	+flex(center, center)
+	+below(520px)
+		display: none
 	&:hover
 		background: $accentb
 	svg
@@ -116,6 +135,26 @@ header
 			&:nth-child(3)
 				top: 50%
 				transform: rotate(-45deg) translateY(0%)
+.mobile-menu
+	display: none
+	position: absolute
+	width: 100%
+	padding-left: 0px
+	padding-top: 20px
+	padding-bottom: 20px
+	border-bottom: solid 1px #ccc
+	z-index: 3
+	+below(520px)
+		+flex(center, center, column)
+	.button
+		display: block
+		margin-top: 20px
+	li
+		width: auto
+		text-align: center
+		margin-top: 10px
+		margin-left: 0
+		font-size: 18px
 </style>
 
 
