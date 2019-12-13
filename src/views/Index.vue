@@ -6,21 +6,24 @@
 			h1 
 				| Крауд-фандинг 
 				br
-				| площадка для развития 
-				span.accent безбарьерной среды 
-			p Помогаем маломобильным гражданам жить с комфортом
+				| площадка для помощи в развитии 
+				span.accent  города
+			p Помощь в развитии проектов 
 		.right
 			register
+	simpleProject
 </template>
 
 <script>
 // @ is an alias to /src
 import register from "@/components/register.vue";
+import simpleProject from "@/components/simpleProject.vue";
 
 export default {
   name: "index",
   components: {
     register,
+    simpleProject
   }
 };
 </script>

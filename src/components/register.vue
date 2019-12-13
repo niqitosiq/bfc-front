@@ -23,7 +23,6 @@ export default {
 @import "@/assets/sass/all";
 
 .right
-	width: 100%
 	+below(480px)
 		width: 100%
 

@@ -4,6 +4,9 @@ header
 	.container
 		.logo
 			svgi(name="logo")
+			.descr
+				h2 BarFree
+				p Краудфандинг для города
 		.menu
 			ul.nav
 				router-link(to="/")
@@ -59,14 +62,21 @@ header
 	position: relative
 	.container
 		flex-direction: row
+		align-items: center
 .logo
-	display: flex
+	+flex(center, center)
 	color: $accent
 	svg
 		font-size: 45px
-		margin-right: 10px
-	h1
+		margin-right: 15px
+		flex-shrink: 0
+	h2, p
 		margin: 0	
+	p
+		font-size: 16px
+		color: #807f7f
+		+below(340px)
+			font-size: 14px
 .menu
 	display: flex
 	align-items: center
