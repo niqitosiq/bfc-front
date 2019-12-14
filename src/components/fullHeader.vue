@@ -17,19 +17,21 @@ header
 					li Создать проект
 			li.button(v-if="this.$store.state.Auth.auth" @click="logout()")
 				span Выйти
-			li.button(v-else @click="login()")
+			li.button(v-else @click="login();")
 				span Войти
 				svgi(name="login")
-			.burger(:class="{active: burger}", @click="burger = !burger")
+			.burger(:class="{active: burger}" @click="burger = !burger")
 				.line.l1
 				.line.l2
 				.line.l3
 	transition(name="fade_top")
-		ul.mobile-menu.nav(v-if="burger")
+		ul.mobile-menu.nav(v-if="burger" @click="burger = !burger")
 			router-link(to="/")
 				li Главная
 			router-link(to="/projects")
 				li Все проекты
+			router-link(to="/new" v-if="this.$store.state.Auth.auth")
+				li Создать проект
 
 			li.button(v-if="this.$store.state.Auth.auth" @click="logout()")
 				span Выйти
@@ -72,7 +74,6 @@ header
 	justify-content: space-between
 	padding-top: 20px
 	padding-bottom: 20px
-	border-bottom: solid 1px #ccc
 	background: #fff
 	z-index: 4
 	position: relative
@@ -100,7 +101,7 @@ header
 	display: flex
 	list-style-type: none
 	margin-right: 30px
-	+below(520px)
+	+below(860px)
 		display: none
 		margin-right: 10px
 	li
@@ -118,7 +119,7 @@ header
 	transition: background ease-in-out .2s
 	cursor: pointer
 	+flex(center, center)
-	+below(520px)
+	+below(860px)
 		display: none
 	&:hover
 		background: $accentb
@@ -132,7 +133,7 @@ header
 	position: relative
 	margin-left: 20px
 	cursor: pointer
-	+below(520px)
+	+below(860px)
 		display: block
 	.line
 		width: 100%
@@ -173,7 +174,7 @@ header
 	padding-bottom: 20px
 	border-bottom: solid 1px #ccc
 	z-index: 3
-	+below(520px)
+	+below(860px)
 		+flex(center, center, column)
 	.button
 		display: block

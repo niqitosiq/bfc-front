@@ -4,3 +4,13 @@
 .fade_top-enter, .fade_top-leave-to
   opacity: 0
   transform: translateY(-30px)
+
+.fade-enter-active, .fade-leave-active 
+  transition-property: opacity, transform
+  transition-duration: .25s
+  transform: translateY(0px)
+.fade-enter-active 
+  transition-delay: .25s
+.fade-enter, .fade-leave-active 
+  transform: translateY(50px)
+  opacity: 0

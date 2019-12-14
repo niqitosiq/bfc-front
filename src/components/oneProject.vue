@@ -50,7 +50,8 @@ export default {
 .oneProject
 	width: 310px
 	margin-bottom: 40px
-	background: #f7f5f5
+	background: #fff
+	box-shadow: 0px 10px 18px -7px rgba(0,0,0,0.35)
 	border-radius: 10px
 	overflow: hidden
 	position: relative
@@ -106,7 +107,8 @@ export default {
 	z-index: 3
 	position: absolute
 	left: 50%
-	transform: translateX(-50%)
+	top: 50%
+	transform: translate(-50%, -50%)
 	font-weight: bold
 	color: #000
 .cifres

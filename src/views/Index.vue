@@ -1,16 +1,17 @@
 <template lang="pug">
 
 .main
-	.container
-		.left
-			h1 
-				| Крауд-фандинг 
-				br
-				| площадка для помощи в развитии 
-				span.accent  города
-			p Помощь в развитии проектов 
-		.right
-			register
+	.back
+		.container
+			.left
+				h1 
+					| Крауд-фандинг 
+					br
+					| площадка для помощи в развитии 
+					span.accent  города
+				p Помощь в развитии проектов 
+			.right
+				register
 	simpleProject
 </template>
 
@@ -40,4 +41,12 @@ h1
 			display: none
 	.accent
 		color: $accent
+.back
+	background-image: url('/images/bcgc.png')
+	background-size: cover
+	
 </style>
+
+
+
+

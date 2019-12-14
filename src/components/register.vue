@@ -58,6 +58,8 @@ export default {
 	border-radius: 10px
 	margin-top: 30px
 	min-height: 303px
+	background: #fff
+	margin-bottom: 30px
 	+flex(center, center, column)
 	+below(1000px)
 		margin-left: 40px

@@ -1,8 +1,12 @@
 <template lang="pug">
 
 .newProject
+
+	.back
+		.container.row
+			h1 Создать новый проект
+			p Для создания введите все необходимые данные и загрузите изображение
 	.container.row
-		h1 Создать новый проект
 		form(v-on:submit.prevent="send()")
 			.image-wrapper
 				vueDropzone(ref="myVueDropzone" id="dropzone" :options="dropzoneOptions")
@@ -61,10 +65,14 @@ export default {
 .newProject
 	.container
 		width: 600px
+		+below(720px)
+			width: 90%
 	form
 		+flex(center, flex-start, column)
 		width: 600px
 		padding-bottom: 100px
+		+below(720px)
+			width: 90%
 	.image-wrapper
 		width: 100%
 		margin-bottom: 50px
@@ -99,6 +107,15 @@ export default {
 	.coords
 		color: #ccc
 		font-size: 14px
+.back
+	padding-top: 50px
+	padding-bottom: 50px
+	margin-bottom: 30px
+	h1,p
+		margin-top: 0
+		margin-bottom: 10px
+	p
+		margin-top: 20px
 </style>
 
 

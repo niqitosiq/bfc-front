@@ -1,8 +1,10 @@
 <template lang="pug">
 
 .main
-	.container
-		h1 Все проекты
+	.back
+		.container
+			h1 Все проекты
+			p На этой странице вы можете увидить проекты, которые нуждаются в вашей поддержке.
 	simpleProject
 </template>
 
@@ -16,7 +18,17 @@ export default {
   }
 };
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 @import "@/assets/sass/all";
-
+.container
+	flex-direction: column
+	align-items: flex-start
+	padding-top: 10px
+	padding-bottom: 30px
+.back
+h1
+	margin-top: 20px
+	margin-bottom: 20px
+p
+	margin-top: 10px
 </style>

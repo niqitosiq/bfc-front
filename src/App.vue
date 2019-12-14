@@ -1,7 +1,8 @@
 <template lang="pug">
 #app
 	Header
-	router-view
+	transition(name="fade")
+		router-view
 	Modals
 	Loading( 
 		:active.sync="this.$store.state.loading>0" 
