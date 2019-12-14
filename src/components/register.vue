@@ -1,6 +1,6 @@
 <template lang="pug">
-form.register(v-on:submit.prevent="send()" v-if="!this.$store.state.Auth.auth")
-	div
+form.register(v-on:submit.prevent="send()")
+	div(class="registr" v-if="!this.$store.state.Auth.auth")
 		h2 Регистрация
 		.field
 			input(placeholder="Логин" name="login" type="text" v-model="login" required)
@@ -8,6 +8,12 @@ form.register(v-on:submit.prevent="send()" v-if="!this.$store.state.Auth.auth")
 			input(placeholder="Пароль" name="password" type="password" v-model="password" required)
 		button.send(type="submit") Зарегистрироваться
 		p.error {{ error }}
+	div(v-else class="registred")
+		h2 Вы успешно зарегестрированы!
+		p Вы можете разместить проекты для краудфандинга
+		router-link(to="/new").button
+			span Создать
+
 </template>
 
 <script>
@@ -51,6 +57,8 @@ export default {
 	padding-bottom: 30px
 	border-radius: 10px
 	margin-top: 30px
+	min-height: 303px
+	+flex(center, center, column)
 	+below(1000px)
 		margin-left: 40px
 	+below(720px)
@@ -61,6 +69,8 @@ export default {
 	h2
 		text-align: center
 		margin-bottom: 20px
+	p
+		text-align: center
 	.field
 		margin-bottom: 30px
 	.field, input, button
@@ -83,7 +93,14 @@ export default {
 		border-radius: 10px
 		border: none
 		cursor: pointer
-	
+	.registred
+		//padding-left: 30px
+		//padding-right: 30px
+		.button
+			color: #fff
+			margin-top: 30px
+	.registr
+		width: 100%
 	.error
 		color: red
 		width: 100%

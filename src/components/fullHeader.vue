@@ -13,6 +13,8 @@ header
 					li Главная
 				router-link(to="/projects")
 					li Все проекты
+				router-link(to="/new" v-if="this.$store.state.Auth.auth")
+					li Создать проект
 			li.button(v-if="this.$store.state.Auth.auth" @click="logout()")
 				span Выйти
 			li.button(v-else @click="login()")
@@ -53,8 +55,7 @@ export default {
   },
   methods: {
   	logout(){
-  		console.log("A")
-  		this.$store.commit("logout");
+  		this.$store.dispatch("logout");
   	},
   	login(){
   		this.$modal.show('auth');

@@ -3,6 +3,11 @@
 	Header
 	router-view
 	Modals
+	Loading( 
+		:active.sync="this.$store.state.loading>0" 
+        :can-cancel="false"
+        color="#0070c0"
+    )
 </template>
 <script>
 import svgi from "@/components/SvgIcon.vue";
@@ -12,7 +17,18 @@ import VueFlashMessage from 'vue-flash-message';
 import store from './store';
 import VModal from 'vue-js-modal';
 import Modals from '@/components/Modals.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+import YmapPlugin from 'vue-yandex-maps'
 
+
+const yasettings = {
+  apiKey: '8ab5f113-a962-4f63-8250-d9d48828b332',
+  lang: 'ru_RU',
+  coordorder: 'latlong',
+  version: '2.1'
+}
+Vue.use(YmapPlugin, yasettings)
 Vue.use(VModal)
 Vue.use(VueFlashMessage, {
   messageOptions: {
@@ -30,7 +46,8 @@ export default {
   },
   components: {
   	Header,
-  	Modals
+  	Modals,
+  	Loading
   }
 };
 
@@ -54,6 +71,10 @@ h1,h2
 	justify-content: space-between
 	align-items: center
 	min-width: 260px
+	&.row
+		flex-direction: column
+		align-items: flex-start
+		justify-content: flex-start
 	+below(1000px)
 		width: 90%
 	+below(720px)

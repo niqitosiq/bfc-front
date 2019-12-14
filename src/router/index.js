@@ -2,20 +2,22 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Index from "../views/Index.vue";
 import Projects from "../views/Projects.vue";
-
+import New from "../views/New.vue";
 Vue.use(VueRouter);
 
 const routes = [
 
   {
+    path: "/",
+    component: Index
+  },
+  {
     path: "/projects",
-    name: "projects",
     component: Projects
   },
   {
-    path: "/",
-    name: "index",
-    component: Index
+    path: "/new",
+    component: New
   }
 ];
 

@@ -7,9 +7,17 @@ export default new Vuex.Store({
   state: {
   	projects: [
   		{title:"Тайтл", description:"Lorem", geted: 152, total: 500},
-  	]
+  	],
+    loading: 0,
   },
-  mutations: {},
+  mutations: {
+    addLoading: function(state){
+      state.loading++;
+    }, 
+    subLoading: function(state){
+      state.loading--;
+    }, 
+  },
   actions: {
   	getProjects(){
   		//console.log("a")

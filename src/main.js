@@ -5,7 +5,7 @@ import store from "./store";
 import axios from "axios";
 
 
-axios.defaults.baseURL = `http://10.131.56.158:5001/api`;
+axios.defaults.baseURL = `http://192.168.43.232:5001/api`;
 
 Vue.config.productionTip = false;
 

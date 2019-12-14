@@ -20,9 +20,6 @@ export default {
   components: {
     oneProject
   }, 
-  data: function(){
-
-  },
   methods: {
     update(){
       store.dispatch("getProjects", {count: 3, from: 0});
