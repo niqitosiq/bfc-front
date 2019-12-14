@@ -2,43 +2,18 @@
 .container
   .simpleProjects
     oneProject(
-      title="Имя" 
-      total=689 
-      geted=150
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    oneProject(
-      title="Имя" 
-      total=689 
-      geted=150
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    oneProject(
-      title="Имя" 
-      total=689 
-      geted=150
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    oneProject(
-      title="Имя" 
-      total=689 
-      geted=150
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    oneProject(
-      title="Имя" 
-      total=689 
-      geted=150
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    oneProject(
-      title="Имя" 
-      total=689 
-      geted=150
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    
+      v-for="item in this.$store.state.projects"
+      :title="item.title"
+      :total="item.total"
+      :geted="item.geted"
+      :description="item.description")
   router-link(to="/projects")
     .button Посмотреть больше
 </template>
 
 <script>
 import oneProject from "@/components/oneProject.vue";
-//import store from "./store";
+import store from "@/store";
 
 export default {
   name: "index",
@@ -49,7 +24,9 @@ export default {
 
   },
   methods: {
-
+    update(){
+      store.dispatch("getProjects", {count: 3, from: 0});
+    }
   }
 };
 </script>
@@ -62,6 +39,7 @@ export default {
   +flex(flex-start, space-between)
   flex-wrap: wrap
   margin-top: 50px
+  width: 100%
 .button
   margin-top: 40px
 </style>

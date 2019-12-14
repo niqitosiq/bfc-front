@@ -4,5 +4,6 @@ module.exports = {
       .rule('svg-sprite')
       .use('svgo-loader')
       .loader('svgo-loader')
-  }
+	  
+  },
 }

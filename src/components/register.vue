@@ -1,19 +1,20 @@
 <template lang="pug">
-form.register(@prevent="send()")
+form.register(v-on:submit.prevent="send()")
 	h2 Регистрация
 	.field
-		input(placeholder="Логин" name="login" type="text")
+		input(placeholder="Логин" name="login" type="text" required)
 	.field
-		input(placeholder="Пароль" name="password" type="password")
+		input(placeholder="Пароль" name="password" type="password" required)
 	button.send(type="submit") Зарегестрироваться
 </template>
 
 <script>
+import store from '@/store';
 export default {
   name: "register",
   methods: {
-  	register(){
-
+  	send(){
+  		store.dispatch("setToken");
   	}
   }
 };
