@@ -12,6 +12,8 @@
 				p Помощь в развитии проектов 
 			.right
 				register
+	.container
+		h2.last Последние проекты на площадке
 	simpleProject
 </template>
 
@@ -22,8 +24,8 @@ import simpleProject from "@/components/simpleProject.vue";
 export default {
   name: "index",
   components: {
-    register,
-    simpleProject
+	register,
+	simpleProject
   }
 };
 </script>
@@ -44,7 +46,11 @@ h1
 .back
 	background-image: url('/images/bcgc.png')
 	background-size: cover
-	
+
+h2.last
+  text-align: left
+  align-self: flex-start
+  font-size: 30px
 </style>
 
 

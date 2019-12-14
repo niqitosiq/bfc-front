@@ -20,7 +20,9 @@ import VModal from 'vue-js-modal';
 import Modals from '@/components/Modals.vue';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-import YmapPlugin from 'vue-yandex-maps'
+import YmapPlugin from 'vue-yandex-maps';
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 
 
 const yasettings = {
@@ -31,6 +33,7 @@ const yasettings = {
 }
 Vue.use(YmapPlugin, yasettings)
 Vue.use(VModal)
+Vue.component('v-select', vSelect);
 Vue.use(VueFlashMessage, {
   messageOptions: {
     timeout: 700,

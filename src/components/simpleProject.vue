@@ -1,6 +1,5 @@
 <template lang="pug">
 .container
-  h2 Последние проекты на площадке
   .simpleProjects
     oneProject(
       v-for="item in this.$store.state.projects"
@@ -36,14 +35,11 @@ export default {
 .simpleProjects
   +flex(flex-start, space-between)
   flex-wrap: wrap
-  margin-top: 20px
+  margin-top: 50px
   width: 100%
+
 .button
   margin-top: 40px
-h2
-  text-align: left
-  align-self: flex-start
-  font-size: 30px
 </style>
 
 

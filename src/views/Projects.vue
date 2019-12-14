@@ -1,31 +1,33 @@
 <template lang="pug">
-
 .main
 	.back
 		.container
 			h1 Все проекты
 			p На этой странице вы можете увидить проекты, которые нуждаются в вашей поддержке.
+	sorting
 	simpleProject
 </template>
 
 <script>
 import simpleProject from "@/components/simpleProject.vue";
+import sorting from "@/components/Sorting.vue";
 
 export default {
   name: "index",
   components: {
-    simpleProject
+    simpleProject,
+    sorting
   }
 };
 </script>
 <style lang="sass" scoped>
 @import "@/assets/sass/all";
-.container
+
+.back .container
 	flex-direction: column
 	align-items: flex-start
 	padding-top: 10px
 	padding-bottom: 30px
-.back
 h1
 	margin-top: 20px
 	margin-bottom: 20px
