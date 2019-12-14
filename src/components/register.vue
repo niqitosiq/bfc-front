@@ -1,11 +1,13 @@
 <template lang="pug">
-form.register(v-on:submit.prevent="send()")
-	h2 Регистрация
-	.field
-		input(placeholder="Логин" name="login" type="text" required)
-	.field
-		input(placeholder="Пароль" name="password" type="password" required)
-	button.send(type="submit") Зарегестрироваться
+form.register(v-on:submit.prevent="send()" v-if="!this.$store.state.Auth.auth")
+	div
+		h2 Регистрация
+		.field
+			input(placeholder="Логин" name="login" type="text" v-model="login" required)
+		.field
+			input(placeholder="Пароль" name="password" type="password" v-model="password" required)
+		button.send(type="submit") Зарегистрироваться
+		p.error {{ error }}
 </template>
 
 <script>
@@ -14,9 +16,22 @@ export default {
   name: "register",
   methods: {
   	send(){
-  		store.dispatch("setToken");
+  		const { login, password } = this;
+  		store.dispatch("register", {login: login, password: password})
+  		.then((response) => {
+  			console.log(response);
+      		if (response) {this.error = response.message;}
+      		else {this.error = ""; this.login = ""; this.password = ""}
+      	});
   	}
-  }
+  },
+  data: function(){
+  	return {
+	  	password: "",
+	  	login: "",
+	  	error: ""
+  	}
+  },
 };
 </script> 
 
@@ -67,6 +82,12 @@ export default {
 		padding-bottom: 10px
 		border-radius: 10px
 		border: none
+		cursor: pointer
+	
+	.error
+		color: red
+		width: 100%
+		text-align: center
 </style>
 
 

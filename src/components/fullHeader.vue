@@ -13,7 +13,9 @@ header
 					li Главная
 				router-link(to="/projects")
 					li Все проекты
-			div.button 
+			li.button(v-if="this.$store.state.Auth.auth" @click="logout()")
+				span Выйти
+			li.button(v-else @click="login()")
 				span Войти
 				svgi(name="login")
 			.burger(:class="{active: burger}", @click="burger = !burger")
@@ -26,10 +28,14 @@ header
 				li Главная
 			router-link(to="/projects")
 				li Все проекты
-			li.button 
+
+			li.button(v-if="this.$store.state.Auth.auth" @click="logout()")
+				span Выйти
+			li.button(v-else @click="this.$modal.show('auth')")
 				span Войти
 				svgi(name="login")
 
+			
 </template>
 
 
@@ -44,6 +50,15 @@ export default {
 	return {
 		burger: false,
     }
+  },
+  methods: {
+  	logout(){
+  		console.log("A")
+  		this.$store.commit("logout");
+  	},
+  	login(){
+  		this.$modal.show('auth');
+  	}
   }
 };
 </script>

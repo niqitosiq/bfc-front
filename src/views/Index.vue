@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import register from "@/components/register.vue";
 import simpleProject from "@/components/simpleProject.vue";
 

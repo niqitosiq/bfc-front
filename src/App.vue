@@ -2,20 +2,35 @@
 #app
 	Header
 	router-view
+	Modals
 </template>
 <script>
 import svgi from "@/components/SvgIcon.vue";
 import Header from "@/components/fullHeader.vue"
 import Vue from 'vue';
+import VueFlashMessage from 'vue-flash-message';
+import store from './store';
+import VModal from 'vue-js-modal';
+import Modals from '@/components/Modals.vue';
+
+Vue.use(VModal)
+Vue.use(VueFlashMessage, {
+  messageOptions: {
+    timeout: 700,
+  }
+});
+require('vue-flash-message/dist/vue-flash-message.min.css');
+
 Vue.component("svgi", svgi);
 	
 export default {
   name: "App",
   created(){
-
+  	store.dispatch("checkToken");
   },
   components: {
   	Header,
+  	Modals
   }
 };
 
