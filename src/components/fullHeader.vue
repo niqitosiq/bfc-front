@@ -35,7 +35,7 @@ header
 
 			li.button(v-if="this.$store.state.Auth.auth" @click="logout()")
 				span Выйти
-			li.button(v-else @click="this.$modal.show('auth')")
+			li.button(v-else @click="login();")
 				span Войти
 				svgi(name="login")
 
@@ -58,6 +58,7 @@ export default {
   methods: {
   	logout(){
   		this.$store.dispatch("logout");
+  		this.$router.push("/");
   	},
   	login(){
   		this.$modal.show('auth');

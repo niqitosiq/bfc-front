@@ -5,11 +5,11 @@
 	.back
 		.container.row
 			h1 Создать новый проект
-			p Для создания введите все необходимые данные и загрузите изображение
+			p Для создания введите все необходимые данные и загрузите изображение {{this.$store.state.New.room_id}}
 	.container.row
 		form(v-on:submit.prevent="send()")
 			.image-wrapper
-				vueDropzone(ref="myVueDropzone" id="dropzone" :options="dropzoneOptions")
+				vueDropzone(ref="myVueDropzone" id="dropzone" :options="this.$store.state.New.dropzoneOptions")
 			.descr-wrapper
 				input(type="text" placeholder="Название")
 				textarea(class="short" type="text" placeholder="Краткое описание (30 символов)" max=30)
@@ -18,10 +18,10 @@
 					tags(
 					v-model="tag"
 				    :tags="tags"
-				    max-tags=3
+				    :max-tags="3"
 				    @tags-changed="newTags => tags = newTags")
 				yandex-map(:coords="coordinates" zoom="1" @click="getcoords")
-					ymap-marker(:coords="coordinateProject")
+					ymap-marker(:coords="coordinateProject" markerId=1)
 				p.coords Координаты точки y: {{coordinateProject[0]}}, x: {{coordinateProject[1]}}
 			button.button(type="success")
 				span Создать
@@ -32,6 +32,7 @@ import Vue from 'vue';
 import VueTagsInput from '@johmun/vue-tags-input';
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import axios from 'axios';
 Vue.component('tags', VueTagsInput);
 
 export default {
@@ -43,12 +44,6 @@ export default {
   	return {
   		tags: [],
   		tag: "",
-  		dropzoneOptions: {
-			url: 'https://httpbin.org/post',
-			thumbnailWidth: 150,
-			headers: { "Room-Allow": "" },
-			dictDefaultMessage: "Загрузите изображения"
-		},
 		coordinates: [52, 42],
 		coordinateProject: [0, 0] 
   	}
@@ -57,6 +52,9 @@ export default {
   	getcoords(e){
   		this.coordinateProject = e.get('coords');
   	}
+  },
+  mounted: function(){
+  	this.$store.dispatch("generateNew", {this: this});
   }
 };
 </script>

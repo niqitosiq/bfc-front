@@ -3,7 +3,26 @@ import VueRouter from "vue-router";
 import Index from "../views/Index.vue";
 import Projects from "../views/Projects.vue";
 import New from "../views/New.vue";
+import store from '../store';
 Vue.use(VueRouter);
+
+
+const ifNotAuthenticated = (to, from, next) => {
+  if (!store.state.Auth.auth) {
+    next()
+    return
+  }
+  next('/')
+}
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.state.Auth.auth) {
+    next()
+    return
+  }
+  next('/')
+}
+
 
 const routes = [
 
@@ -17,7 +36,8 @@ const routes = [
   },
   {
     path: "/new",
-    component: New
+    component: New,
+    beforeEnter: ifAuthenticated,
   }
 ];
 

@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Auth from './auth.js'
+import Auth from './auth.js';
+import New from './new.js';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -19,11 +21,9 @@ export default new Vuex.Store({
     }, 
   },
   actions: {
-  	getProjects(){
-  		//console.log("a")
-  	}
   },
   modules: {
     Auth,
+    New
   }
 });
