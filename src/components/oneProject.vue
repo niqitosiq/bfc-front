@@ -9,8 +9,7 @@
 			.procent {{procent}}%
 		.cifres
 			| {{geted}}/{{total}} рублей
-		.more 
-			//span Подробнее 
+		router-link.more(:to="'/projects/'+url") 
 			svgi(name="more")
 	
 </template>
@@ -28,6 +27,7 @@ export default {
   	description: String,
   	total: Number,
   	geted: Number,
+  	url: String
   },
   data: function(){
   	return {

@@ -56,6 +56,10 @@ export default {
 	height: 200px
 	overflow: hidden
 	position: relative
+	&.lg
+		height: 400px
+		+below(480px)
+			height: 200px
 	&:hover
 		.arrow	
 			opacity: 1

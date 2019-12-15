@@ -76,7 +76,7 @@ header
 	padding-top: 20px
 	padding-bottom: 20px
 	background: #fff
-	z-index: 4
+	z-index: 10
 	position: relative
 	.container
 		flex-direction: row
@@ -174,7 +174,7 @@ header
 	padding-top: 20px
 	padding-bottom: 20px
 	border-bottom: solid 1px #ccc
-	z-index: 3
+	z-index: 7
 	+below(860px)
 		+flex(center, center, column)
 	.button

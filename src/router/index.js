@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Index from "../views/Index.vue";
 import Projects from "../views/Projects.vue";
+import ProjectsOne from "../views/ProjectsOne.vue";
 import New from "../views/New.vue";
 import store from '../store';
 Vue.use(VueRouter);
@@ -33,6 +34,10 @@ const routes = [
   {
     path: "/projects",
     component: Projects
+  },
+  {
+    path: "/projects/:id",
+    component: ProjectsOne
   },
   {
     path: "/new",

@@ -2,11 +2,12 @@
 .container
   .simpleProjects
     oneProject(
-      v-for="item in this.$store.state.projects"
+      v-for="item in this.$store.state.Projects.projects"
       :title="item.title"
       :total="item.total"
       :geted="item.geted"
-      :description="item.description")
+      :description="item.description"
+      :url="item.url")
   router-link(to="/projects")
     .button Посмотреть больше
 </template>

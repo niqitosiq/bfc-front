@@ -4,10 +4,11 @@ import store from '../store';
 const state = {
 	dropzoneOptions: {
   		url: "http://192.168.43.232:5001/api/new/loadImages",
-		thumbnailWidth: 150,
-		dictDefaultMessage: "Загрузите изображения",
-		headers: {}
-  	}
+  		thumbnailWidth: 150,
+  		dictDefaultMessage: "Загрузите изображения",
+  		headers: {}
+  	},
+    room: -1,
 
 };
  
@@ -22,9 +23,10 @@ const actions = {
   			if (resp.data.status){
   				console.log(resp.data)
   				let data = { 
-					"Room-Allow": resp.data.id,
-					"Authorization": store.state.Auth.token
-				}
+  					"Room-Allow": resp.data.id,
+  					"Authorization": store.state.Auth.token
+  				}
+          state.room = resp.data.id;
   				state.dropzoneOptions.headers = data;
   				console.log(payload.this.$refs.myVueDropzone);
   				payload.this.$refs.myVueDropzone.setOption("headers", data);
@@ -34,6 +36,16 @@ const actions = {
   		}
   	)
   },
+  sendData: function({state}, payload){
+    let data = payload.data;
+    data['id'] = state.room;
+    axios.post("/new/loadJson", payload.data).then(
+        (resp) => {
+          console.log(resp);
+          // Здесь организовать переход на страницу проекта
+        }
+      )
+  }
 };
 const getters = {
 

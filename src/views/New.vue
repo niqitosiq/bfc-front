@@ -11,9 +11,10 @@
 			.image-wrapper
 				vueDropzone(ref="myVueDropzone" id="dropzone" :options="this.$store.state.New.dropzoneOptions")
 			.descr-wrapper
-				input(type="text" placeholder="Название")
-				textarea(class="short" type="text" placeholder="Краткое описание (30 символов)" max=30)
-				textarea(class="long" type="text" placeholder="Подробное описание")
+				input(type="text" placeholder="Название" v-model="title")
+				textarea(class="short" type="text" v-model="descr" placeholder="Краткое описание (30 символов)" max=30)
+				textarea(class="long" type="text" v-model="article" placeholder="Подробное описание")
+				input(class="money" v-model="total" type="money" placeholder="Сколько нужно денег (в рублях)")
 				.tagarea
 					tags(
 					v-model="tag"
@@ -45,12 +46,31 @@ export default {
   		tags: [],
   		tag: "",
 		coordinates: [52, 42],
-		coordinateProject: [0, 0] 
+		coordinateProject: [0, 0],
+		title: "",
+		descr: "",
+		article: "",
+		total: "",
   	}
   },
   methods: {
   	getcoords(e){
   		this.coordinateProject = e.get('coords');
+  	},
+  	send(){
+  		let tagArr = [];
+  		for (let i in this.tags){
+  			tagArr.push(this.tags[i].text);
+  		}
+  		let data = {
+  			title: this.title,
+  			desc: this.descr,
+  			article: this.article,
+  			coord: this.coordinateProject,
+  			total: parseInt(this.total),
+  			tags: tagArr,
+  		}
+  		this.$store.dispatch("sendData", {data: data});
   	}
   },
   mounted: function(){

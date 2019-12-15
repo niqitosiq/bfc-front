@@ -2,14 +2,12 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Auth from './auth.js';
 import New from './new.js';
+import Projects from './projects.js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-  	projects: [
-  		{title:"Тайтл", description:"Lorem", geted: 152, total: 500},
-  	],
     loading: 0,
   },
   mutations: {
@@ -24,6 +22,7 @@ export default new Vuex.Store({
   },
   modules: {
     Auth,
-    New
+    New,
+    Projects
   }
 });
