@@ -98,6 +98,9 @@ header
 .menu
 	display: flex
 	align-items: center
+	.button
+		+below(860px)
+			display: none
 .nav
 	display: flex
 	list-style-type: none
@@ -120,8 +123,6 @@ header
 	transition: background ease-in-out .2s
 	cursor: pointer
 	+flex(center, center)
-	+below(860px)
-		display: none
 	&:hover
 		background: $accentb
 	svg

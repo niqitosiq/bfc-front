@@ -39,10 +39,9 @@ const actions = {
   sendData: function({state}, payload){
     let data = payload.data;
     data['id'] = state.room;
-    axios.post("/new/loadJson", payload.data).then(
+    return axios.post("/new/loadJson", payload.data).then(
         (resp) => {
-          console.log(resp);
-          // Здесь организовать переход на страницу проекта
+          return {id: state.room}
         }
       )
   }

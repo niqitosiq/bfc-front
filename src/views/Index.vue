@@ -15,6 +15,9 @@
 	.container
 		h2.last Последние проекты на площадке
 	simpleProject
+	.container.more-cont
+		router-link(to="/projects")
+			.button() Посмотреть больше
 </template>
 
 <script>
@@ -31,7 +34,9 @@ export default {
 </script>
 <style lang="sass">
 @import "@/assets/sass/all";
-
+.more-cont
+	+flex(center, center)
+	padding-bottom: 50px
 h1 
 	font-size: 45px
 	+below(1000px)

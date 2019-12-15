@@ -52,12 +52,10 @@ const actions = {
   },
   logout: function({commit}) {
     commit("addLoading");
+    commit("logout");
     axios.post("/auth/logout").then(
       (resp) => {
         commit("subLoading");
-        if (resp.data.status){
-          commit("logout");
-        }
       }
     )
   },

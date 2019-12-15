@@ -3,36 +3,66 @@ import store from '../store';
 
 const state = {
 	coord: false,
-  
-    projects: [
-      {title:"Тайтл", description:"aaaffsaa a hsahsa a a asafs a. aa a a a. a. a.a adafnsnn", geted: 152, total: 500, url: "1"},
-    ],
+    projects: [],
     current: {
-      title: "Тайтл",
-      article: "FFFFFFFFFFF SAFLGKAKHGAJHTU IUHTIQNTQUWIOPCQPOЬЦ", 
-      descr: "salfajsjfaskjfs",
-      total: 3000,
-      geted: 3000,
-      images: ["1", "2", "3"],
-      prim: "fsa1221vhjb2vbn52"
-    }
+    }, 
+    tags: {
+
+    },
+    last: 0,
 };
  
 const mutations = {
   updateCoord: function({state}, payload){
     state.coord = payload.coord;
-  }
-  
+  },
 };
 const actions = {
-  getProjects: function({state}, payload){
-    let tags = payload.tags;
-    if (tags.length!=0){
-      //axios.get()
+  getProjects: function({state, commit}, payload){
+    commit("addLoading");
+    if (payload.tags.length!=0 && payload.tags){
+      state.tags = payload.tags;
+      axios.post("/getposts", {filter: 'tags', tags: payload.tags, page: state.last}).then(
+        (resp) => {
+          if (resp.data.length!=0){
+            for (let i in resp.data){
+              state.projects.push(resp.data[i]);
+            }
+          }
+          commit("subLoading");
+
+        }
+      )
+    } else {
+      axios.post("/getposts", {filter: 'all', page: state.last}).then(
+        (resp) => {
+          if (resp.data.length!=0){
+            for (let i in resp.data){
+              state.projects.push(resp.data[i]);
+            }
+            
+          }
+          commit("subLoading");
+        }
+      )
     }
   },
-  updateCurrent: function({state}, payload){
-
+  updateCurrent: function({state, commit}, payload){
+    commit("addLoading");
+    axios.get("/post?id="+payload.id).then(
+      (resp) => {
+        state.current = resp.data;
+        commit("subLoading");
+      })
+  },
+  more: function({state, dispatch}){
+    state.last++;
+    dispatch("getProjects", {tags: state.tags});
+  },
+  discard: function({state}){
+    state.last = 0;
+    state.tags = [];
+    state.projects = [];
   }
 };
 const getters = {

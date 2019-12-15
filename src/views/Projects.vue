@@ -6,6 +6,8 @@
 			p На этой странице вы можете увидить проекты, которые нуждаются в вашей поддержке.
 	sorting
 	simpleProject
+	.container.more-cont
+		.button(@click="more") Посмотреть больше
 </template>
 
 <script>
@@ -17,6 +19,12 @@ export default {
   components: {
     simpleProject,
     sorting
+  },
+  methods: {
+    more(){
+      this.$store.dispatch("more");
+      this.$store.dispatch("getProjects", {tags: []});
+    },
   }
 };
 </script>

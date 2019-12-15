@@ -4,17 +4,15 @@
     oneProject(
       v-for="item in this.$store.state.Projects.projects"
       :title="item.title"
-      :total="item.total"
-      :geted="item.geted"
+      :total="item.price"
+      :geted="item.alreadyhave"
       :description="item.description"
-      :url="item.url")
-  router-link(to="/projects")
-    .button Посмотреть больше
+      :url="item.id")
 </template>
 
 <script>
 import oneProject from "@/components/oneProject.vue";
-import store from "@/store";
+import store from "../store";
 
 export default {
   name: "index",
@@ -23,8 +21,12 @@ export default {
   }, 
   methods: {
     update(){
-      store.dispatch("getProjects", {count: 3, from: 0});
-    }
+      store.dispatch("getProjects", {tags: []});
+    },
+  }, 
+  created(){
+    store.dispatch("discard");
+    store.dispatch("getProjects", {tags: []});
   }
 };
 </script>
