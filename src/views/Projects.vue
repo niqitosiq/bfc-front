@@ -23,7 +23,9 @@ export default {
   methods: {
     more(){
       this.$store.dispatch("more");
-      this.$store.dispatch("getProjects", {tags: []});
+      this.$store.dispatch("getProjectsPage");
+      
+
     },
   }
 };

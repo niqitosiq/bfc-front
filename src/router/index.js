@@ -7,15 +7,6 @@ import New from "../views/New.vue";
 import store from '../store';
 Vue.use(VueRouter);
 
-
-const ifNotAuthenticated = (to, from, next) => {
-  if (!store.state.Auth.auth) {
-    next()
-    return
-  }
-  next('/')
-}
-
 const ifAuthenticated = (to, from, next) => {
   if (store.state.Auth.auth) {
     next()
@@ -43,6 +34,7 @@ const routes = [
     path: "/new",
     component: New,
     beforeEnter: ifAuthenticated,
+
   }
 ];
 

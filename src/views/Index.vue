@@ -12,10 +12,10 @@
 				p Помощь в развитии проектов 
 			.right
 				register
-	.container
+	.container(v-if="$store.state.Projects.projects.length>0")
 		h2.last Последние проекты на площадке
 	simpleProject
-	.container.more-cont
+	.container.more-cont(v-if="$store.state.Projects.projects.length>0")
 		router-link(to="/projects")
 			.button() Посмотреть больше
 </template>

@@ -51,7 +51,7 @@ export default {
 			},
 			submit(){
 				this.$modal.hide('map');
-				this.$store.commit("updateCoord", {coord: this.coordinateProject});
+				this.$store.dispatch("updateCoord", {coord: this.coordinateProject});
 			}
 
 	}

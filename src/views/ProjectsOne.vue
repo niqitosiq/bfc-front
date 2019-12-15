@@ -1,7 +1,7 @@
 <template lang="pug">
 .projectOne.container
 	.wrapper-w
-		gallery(:images='$store.state.Projects.current.images' large=true)
+		gallery(:images='$store.state.Projects.current.files' large=true)
 	.descr
 		h2 {{ $store.state.Projects.current.title }}
 		p {{ $store.state.Projects.current.article }}

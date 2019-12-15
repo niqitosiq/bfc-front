@@ -7,7 +7,8 @@
       :total="item.price"
       :geted="item.alreadyhave"
       :description="item.description"
-      :url="item.id")
+      :url="item.id"
+      :img="item.files")
 </template>
 
 <script>
@@ -21,12 +22,12 @@ export default {
   }, 
   methods: {
     update(){
-      store.dispatch("getProjects", {tags: []});
+      store.dispatch("getProjectsPage");
     },
   }, 
   created(){
     store.dispatch("discard");
-    store.dispatch("getProjects", {tags: []});
+    store.dispatch("getProjectsPage");
   }
 };
 </script>

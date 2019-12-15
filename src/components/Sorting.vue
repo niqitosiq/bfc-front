@@ -2,7 +2,7 @@
 .sorting.container
 	.sort
 		.tags
-			v-select(multiple placeholder="Выберите теги" v-model="tagsSelected" :options="tagsAll")
+			v-select(multiple placeholder="Выберите теги" v-model="tagsSelected" :options="$store.state.Projects.tags")
 		.button(@click="openMap()")
 			| Выбрать точку 
 	.button.sub(@click="submit")
@@ -20,7 +20,6 @@ export default {
   data: function(){
     return {
      tagsSelected: [],
-     tagsAll: ['Canada','United States', 'Canada2','United States2']
     }
   },
   methods: {
@@ -28,8 +27,11 @@ export default {
   		this.$modal.show('map');
   	}, 
   	submit(){
-  		this.$store.dispatch("getProjects", {tags: this.tagsSelected})
+  		this.$store.dispatch("getProjectsFiltred", {tags: this.tagsSelected})
   	}
+  },
+  mounted(){
+  	this.$store.dispatch("getTags");
   }
 };
 </script>

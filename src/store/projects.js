@@ -2,51 +2,61 @@ import axios from 'axios';
 import store from '../store';
 
 const state = {
-	coord: false,
     projects: [],
-    current: {
-    }, 
-    tags: {
-
-    },
+    current: {}, 
     last: 0,
+    coord: [],
+    tags: [],
+
 };
  
-const mutations = {
-  updateCoord: function({state}, payload){
-    state.coord = payload.coord;
-  },
-};
 const actions = {
-  getProjects: function({state, commit}, payload){
+  getProjectsPage: function({state, commit}){
     commit("addLoading");
-    if (payload.tags.length!=0 && payload.tags){
-      state.tags = payload.tags;
-      axios.post("/getposts", {filter: 'tags', tags: payload.tags, page: state.last}).then(
-        (resp) => {
-          if (resp.data.length!=0){
-            for (let i in resp.data){
-              state.projects.push(resp.data[i]);
-            }
+    axios.post("/getposts", {page: state.last}).then(
+      (resp) => {
+        if (resp.data.length!=0){
+          for (let i in resp.data){
+            state.projects.push(resp.data[i]);
           }
-          commit("subLoading");
-
         }
-      )
-    } else {
-      axios.post("/getposts", {filter: 'all', page: state.last}).then(
-        (resp) => {
-          if (resp.data.length!=0){
-            for (let i in resp.data){
-              state.projects.push(resp.data[i]);
-            }
-            
-          }
-          commit("subLoading");
-        }
-      )
-    }
+        commit("subLoading");
+      }
+    )
   },
+  getProjectsFiltred: function({state, dispatch, commit}, payload){
+    let data = {};
+    if (state.coord.length!=0){data.coord = state.coord};
+    if (payload.tags.length!=0){data.tags = payload.tags};
+    if (!data.coord && !data.tags){
+      dispatch("discard");
+      dispatch("getProjectsPage");
+      return;
+    }
+    commit("addLoading");
+    dispatch("discard");
+    axios.post("/getposts", data).then(
+      (resp) => {
+        if (resp.data.length!=0){
+          for (let i in resp.data){
+            state.projects.push(resp.data[i]);
+          }
+        }
+        commit("subLoading");
+      }
+    )
+  },
+  getTags: function({state}){
+    axios.get("/tags").then(
+      (resp) => { 
+        state.tags = [];
+        for (let i in resp.data){
+          state.tags.push(resp.data[i].tag);
+        };
+      }
+    )
+  },
+
   updateCurrent: function({state, commit}, payload){
     commit("addLoading");
     axios.get("/post?id="+payload.id).then(
@@ -61,9 +71,12 @@ const actions = {
   },
   discard: function({state}){
     state.last = 0;
-    state.tags = [];
+    //state.tags = [];
     state.projects = [];
-  }
+  },
+  updateCoord: function({state}, payload){
+    state.coord = payload.coord;
+  },
 };
 const getters = {
 
@@ -72,6 +85,5 @@ const getters = {
 export default {
   state,
   getters,
-  actions,
-  mutations
+  actions
 }

@@ -1,6 +1,6 @@
 <template lang="pug">
 .oneProject
-	gallery(:images='["images/example.jpg", "images/2.jpg", "images/example.jpg"]')
+	gallery(:images='img')
 	.descr
 		h3.title {{ title }}
 		p {{ description }}
@@ -27,7 +27,8 @@ export default {
   	description: String,
   	total: Number,
   	geted: Number,
-  	url: String
+  	url: String,
+  	img: Array
   },
   data: function(){
   	return {

@@ -4,14 +4,16 @@
 	.prev.arrow(@click="prev()")
 		svgi(name="arrow")
 	.wrapper
-		img(v-for="item, index in localImages" :src="item" :class="{active: index===activeSlide}")
+		img(v-for="item, index in images" 
+			:src="axios.defaults.baseURL+'/uploads/' + item" 
+			:class="{active: index===activeSlide}")
 
 	.next.arrow(@click="next()")
 		svgi(name="arrow")
 </template>
 
 <script>
-//import  from "@/components/.vue";
+import axios from "axios";
 
 export default {
   name: "gallery",
@@ -24,13 +26,13 @@ export default {
   },
   data: function(){
   	return {
-  		localImages: [],
   		activeSlide: 0,
+  		axios: axios
   	}
   },
   methods: {
   	next(){
-  		if (this.activeSlide+1<this.localImages.length){
+  		if (this.activeSlide+1<this.images.length){
   			this.activeSlide++;
   		} else {
   			this.activeSlide = 0;
@@ -40,7 +42,7 @@ export default {
   		if (this.activeSlide-1>=0){
   			this.activeSlide--;
   		} else {
-  			this.activeSlide = this.localImages.length-1;
+  			this.activeSlide = this.images.length-1;
   		}
   	}
   },
