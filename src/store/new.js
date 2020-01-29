@@ -3,7 +3,7 @@ import store from '../store';
 
 const state = {
 	dropzoneOptions: {
-  		url: "http://192.168.43.232:5001/api/new/loadImages",
+  		url: "http://127.0.0.1:5001/api/new/loadImages",
   		thumbnailWidth: 150,
   		dictDefaultMessage: "Загрузите изображения",
   		headers: {}
